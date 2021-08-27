@@ -1,0 +1,51 @@
+# Project: SDLgame1
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = mingw32-g++.exe
+CC   = mingw32-gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = Capp.o Capp_OnInit.o Capp_OnEvent.o Capp_OnLoop.o Capp_OnRender.o Capp_OnCleanup.o Csurface.o Cevent.o $(RES)
+LINKOBJ  = Capp.o Capp_OnInit.o Capp_OnEvent.o Capp_OnLoop.o Capp_OnRender.o Capp_OnCleanup.o Csurface.o Cevent.o $(RES)
+LIBS =  -L"C:/Dev-Cpp/lib" -L"C:/LIBSc/SDL2-devel-2.0.16-mingw/SDL2-2.0.16/i686-w64-mingw32/lib" -lmingw32 -lSDL2main -lSDL2  
+INCS =  -I"C:/Dev-Cpp/include"  -I"C:/LIBSc/SDL2-devel-2.0.16-mingw/SDL2-2.0.16/i686-w64-mingw32/include/SDL2" 
+CXXINCS =  -I"C:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"C:/Dev-Cpp/include/c++/3.4.2/backward"  -I"C:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"C:/Dev-Cpp/include/c++/3.4.2"  -I"C:/Dev-Cpp/include"  -I"C:/LIBSc/SDL2-devel-2.0.16-mingw/SDL2-2.0.16/i686-w64-mingw32/include/SDL2" 
+BIN  = SDLgame1.exe
+CXXFLAGS = $(CXXINCS)  
+CFLAGS = $(INCS)  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before SDLgame1.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "SDLgame1.exe" $(LIBS)
+
+Capp.o: Capp.cpp
+	$(CPP) -c Capp.cpp -o Capp.o $(CXXFLAGS)
+
+Capp_OnInit.o: Capp_OnInit.cpp
+	$(CPP) -c Capp_OnInit.cpp -o Capp_OnInit.o $(CXXFLAGS)
+
+Capp_OnEvent.o: Capp_OnEvent.cpp
+	$(CPP) -c Capp_OnEvent.cpp -o Capp_OnEvent.o $(CXXFLAGS)
+
+Capp_OnLoop.o: Capp_OnLoop.cpp
+	$(CPP) -c Capp_OnLoop.cpp -o Capp_OnLoop.o $(CXXFLAGS)
+
+Capp_OnRender.o: Capp_OnRender.cpp
+	$(CPP) -c Capp_OnRender.cpp -o Capp_OnRender.o $(CXXFLAGS)
+
+Capp_OnCleanup.o: Capp_OnCleanup.cpp
+	$(CPP) -c Capp_OnCleanup.cpp -o Capp_OnCleanup.o $(CXXFLAGS)
+
+Csurface.o: Csurface.cpp
+	$(CPP) -c Csurface.cpp -o Csurface.o $(CXXFLAGS)
+
+Cevent.o: Cevent.cpp
+	$(CPP) -c Cevent.cpp -o Cevent.o $(CXXFLAGS)

@@ -2,10 +2,18 @@
 #include "Capp.h"
  
 Capp::Capp() {
+    CurrentPlayer = 0;
     sdlWindow = NULL;
     sdlRenderer = NULL;
-    Surf_Test = NULL;
-    sdlTexture = NULL;
+    //Surf_Test = NULL;
+    //sdlTexture = NULL;
+    Surf_Grid = NULL;
+    Surf_X = NULL;
+    Surf_O = NULL;
+    Texture_Grid = NULL;
+    Texture_X = NULL;
+    Texture_O = NULL;
+    
     Running = true;
 }
  
@@ -34,6 +42,19 @@ int Capp::OnExecute() {
     OnCleanup();
  
     return 0;
+}
+
+void Capp::Reset() {
+    for(int i = 0;i < 9;i++) {
+        Grid[i] = GRID_TYPE_NONE;
+    }
+}
+
+void Capp::SetCell(int ID, int Type) {
+    if(ID < 0 || ID >= 9) return;
+    if(Type < 0 || Type > GRID_TYPE_O) return;
+ 
+    Grid[ID] = Type;
 }
  
 int main(int argc, char* argv[]) {

@@ -1,5 +1,6 @@
 #include "Csurface.h"
 #include <iostream>
+#include "SDL_image.h"
  
 Csurface::Csurface() {
 }
@@ -8,7 +9,7 @@ SDL_Surface* Csurface::OnLoad(char* File) {
     SDL_Surface* Surf_Temp = NULL;
     SDL_Surface* Surf_Return = NULL;
  
-    if((Surf_Temp = SDL_LoadBMP(File)) == NULL) {
+    if((Surf_Temp = IMG_Load(File)) == NULL) {
         std::cout << "LoadBMP failed \n";
         system("PAUSE");
         return NULL;
@@ -31,7 +32,7 @@ bool Csurface::OnDraw(SDL_Renderer* Render_Dest, SDL_Texture* Texture_Src, int s
     SDL_Rect DstR;
  
     DstR.x = srcX;
-    DstR.y = srcX;
+    DstR.y = srcY;
     DstR.w = width;
     DstR.h = height;
  
@@ -66,6 +67,16 @@ bool Csurface::OnDraw(SDL_Renderer* Render_Dest, SDL_Texture* Texture_Src, int d
  
     //SDL_BlitSurface(Surf_Src, &SrcR, Surf_Dest, &DestR);
     SDL_RenderCopy( Render_Dest, Texture_Src, &SrcR, &DestR);
+ 
+    return true;
+}
+
+bool Csurface::Transparent(SDL_Surface* Surf_Dest, int R, int G, int B) {
+    if(Surf_Dest == NULL) {
+        return false;
+    }
+ 
+    SDL_SetColorKey(Surf_Dest, SDL_TRUE, SDL_MapRGB(Surf_Dest->format, R, G, B));
  
     return true;
 }

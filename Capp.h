@@ -11,8 +11,24 @@ class Capp : public Cevent{
         
         SDL_Window *sdlWindow;
         SDL_Renderer *sdlRenderer;
-        SDL_Surface*    Surf_Test;
-        SDL_Texture* sdlTexture;
+        //SDL_Surface*    Surf_Test;
+        //SDL_Texture* sdlTexture;
+        
+        SDL_Surface*    Surf_Grid;
+        SDL_Surface*    Surf_X;
+        SDL_Surface*    Surf_O;
+        SDL_Texture* Texture_Grid;
+        SDL_Texture* Texture_X;
+        SDL_Texture* Texture_O;
+        
+        int        Grid[9];
+        int CurrentPlayer;
+        
+        enum {
+           GRID_TYPE_NONE = 0,
+           GRID_TYPE_X,
+           GRID_TYPE_O
+           };
         
  
     public:
@@ -31,7 +47,13 @@ class Capp : public Cevent{
  
         void OnCleanup();
         
+        void OnLButtonDown(int mX, int mY);
+        
         void OnExit();
+        
+        void Reset();
+        
+        void SetCell(int ID, int Type);
  
 };
  
